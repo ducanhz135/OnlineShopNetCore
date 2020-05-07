@@ -1,4 +1,5 @@
 ﻿using eShopSolution.Application.Catalog.Products.Dto;
+using eShopSolution.Application.Catalog.Products.Dtos;
 using eShopSolution.Application.Dtos;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ namespace eShopSolution.Application.Catalog.Products
 {
     public interface IPublicProductService
     {
-        PagedViewModel<ProductViewModel> GetAllByCategoryId(int categoryId, int pageIndex, int pageSize);
+        PagedResult<ProductViewModel> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request);
 
         int Delete(int productId);
     }

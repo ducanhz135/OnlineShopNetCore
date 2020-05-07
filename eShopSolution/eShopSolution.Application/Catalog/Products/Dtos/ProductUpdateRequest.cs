@@ -4,11 +4,10 @@ using System.Text;
 
 namespace eShopSolution.Application.Catalog.Products.Dto
 {
-    public class ProductCreatedRequest
+    public class ProductUpdateRequest
     {
-        public decimal Price { set; get; }
-        public decimal OriginalPrice { set; get; }
-        public int Stock { set; get; }
+        public int Id { get; set; }
+
         public string Name { set; get; }
         public string Description { set; get; }
         public string Details { set; get; }
