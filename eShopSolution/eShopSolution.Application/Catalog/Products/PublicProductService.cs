@@ -7,6 +7,7 @@ using eShopSolution.Application.Catalog.Products.Dtos;
 using eShopSolution.Application.Dtos;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using eShopSolution.Data.EF;
 
 namespace eShopSolution.Application.Catalog.Products
 {
@@ -15,7 +16,7 @@ namespace eShopSolution.Application.Catalog.Products
 
         private readonly EShopDbContext _context;
 
-        public ManageProductService(EShopDbContext context)
+        public PublicProductService(EShopDbContext context)
         {
             _context = context;
         }
