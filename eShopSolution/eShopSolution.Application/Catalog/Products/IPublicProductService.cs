@@ -10,8 +10,7 @@ namespace eShopSolution.Application.Catalog.Products
 {
     public interface IPublicProductService
     {
-        PagedResult<ProductViewModel> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request);
+        Task<PagedResult<ProductViewModel>> GetAllByCategoryId(string languageId, GetPublicProductPagingRequest request);
 
-        int Delete(int productId);
     }
 }
