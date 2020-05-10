@@ -1,6 +1,8 @@
-﻿using eShopSolution.Application.Catalog.Products.Dto;
-using eShopSolution.Application.Catalog.Products.Dtos;
-using eShopSolution.Application.Dtos;
+﻿
+using eShopSolution.ViewModels.Catalog;
+using eShopSolution.ViewModels.Catalog.ProductImages;
+using eShopSolution.ViewModels.Catalog.Products;
+using eShopSolution.ViewModels.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,5 +25,13 @@ namespace eShopSolution.Application.Catalog.Products
         Task AddViewcount(int productId);
 
         Task<PagedResult<ProductViewModel>> GetAllPaging(GetPublicProductPagingRequest request);
+
+        Task<int> AddImage(int productId, ProductImageCreateRequest request);
+
+        Task<int> RemoveImage(int imageId);
+
+        Task<int> UpdateImage(int imageId, ProductImageUpdateRequest request);
+
+        Task<List<ProductImageViewModel>> GetListImages(int productId);
     }
 }

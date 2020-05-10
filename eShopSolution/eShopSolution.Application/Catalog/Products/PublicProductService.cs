@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using eShopSolution.Application.Catalog.Products.Dto;
-using eShopSolution.Application.Catalog.Products.Dtos;
-using eShopSolution.Application.Dtos;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using eShopSolution.Data.EF;
+using eShopSolution.ViewModels.Common;
+using eShopSolution.ViewModels.Catalog;
+using eShopSolution.ViewModels.Catalog.Products;
 
 namespace eShopSolution.Application.Catalog.Products
 {
