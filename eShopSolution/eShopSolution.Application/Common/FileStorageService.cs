@@ -11,7 +11,7 @@ namespace eShopSolution.Application.Common
         private readonly string _userContentFolder;
         private const string USER_CONTENT_FOLDER_NAME = "user-content";
 
-        public FileStorageService(IHostingEnvironment hostingEnvironment)
+        public FileStorageService(IWebHostEnvironment hostingEnvironment)
         {
             _userContentFolder = Path.Combine(hostingEnvironment.WebRootPath, USER_CONTENT_FOLDER_NAME);
         }
