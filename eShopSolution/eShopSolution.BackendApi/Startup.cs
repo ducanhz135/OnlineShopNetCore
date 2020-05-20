@@ -13,6 +13,7 @@ using eShopSolution.Data.EF;
 using eShopSolution.Utilities.Constants;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using eShopSolution.Application.Common;
 
 namespace eShopSolution.BackendApi
 {
@@ -33,7 +34,10 @@ namespace eShopSolution.BackendApi
 
 
             //Declare DI
+            services.AddTransient<IStorageService, FileStorageService>();
+
             services.AddTransient<IPublicProductService, PublicProductService>();
+            services.AddTransient<IManageProductService, ManageProductService>();
 
             services.AddControllersWithViews();
 

@@ -189,7 +189,11 @@ namespace eShopSolution.Application.Catalog.Products
 
         public async Task<bool> UpdatePrice(int productId, decimal newPrice)
         {
-            throw new NotImplementedException();
+            var product = await _context.Products.FindAsync(productId);
+            if (product == null) throw new EShopException($"Cannot find a product with id: {productId}");
+            product.Price = newPrice;
+
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public async Task<bool> UpdateStock(int productId, int addedQuantity)
@@ -276,6 +280,33 @@ namespace eShopSolution.Application.Catalog.Products
                     ProductId = i.ProductId,
                     SortOrder = i.SortOrder
                 }).ToListAsync();
+        }
+
+        public async Task<ProductViewModel> GetById(int productId, string languageId)
+        {
+            var product = await _context.Products.FindAsync(productId);
+            var productTranslation = await _context.ProductTranslations.FirstOrDefaultAsync(x => x.ProductId == productId
+            && x.LanguageId == languageId);
+
+            var productViewModel = new ProductViewModel()
+            {
+                Id = product.Id,
+                DateCreated = product.DateCreated,
+                Description = productTranslation.Description ?? null,
+                LanguageId = productTranslation.LanguageId,
+                Details = productTranslation.Details ?? null,
+                Name = productTranslation.Name ?? null,
+                OriginalPrice = product.OriginalPrice,
+                Price = product.Price,
+                SeoAlias = productTranslation.SeoAlias ?? null,
+                SeoDescription = productTranslation.SeoDescription ?? null,
+                SeoTitle =productTranslation.SeoTitle ?? null,
+                Stock = product.Stock,
+                ViewCount = product.ViewCount
+
+            };
+
+            return productViewModel;
         }
     }
 }

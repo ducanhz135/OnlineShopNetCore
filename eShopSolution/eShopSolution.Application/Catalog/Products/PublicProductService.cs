@@ -34,7 +34,7 @@ namespace eShopSolution.Application.Catalog.Products
                         join c in _context.Categories on pic.CategoryId equals c.Id
                         select new { p, pt, pic };
 
-            int totalRow = await query.CountAsync();
+            //int totalRow = await query.CountAsync();
 
             var data = await query.Select(x => new ProductViewModel()
                 {
