@@ -262,6 +262,12 @@ namespace eShopSolution.Application.Catalog.Products
             var productImage = await _context.ProductImages.FindAsync(imageId);
             if (productImage == null)
                 throw new EShopException($"Cannot find an image with id {imageId}");
+
+            var image = await _context.ProductImages.FirstOrDefaultAsync(i => i.Id == imageId);
+            if(image == null)
+                await _storageService.DeleteFileAsync(image.ImagePath);
+
+
             _context.ProductImages.Remove(productImage);
             return await _context.SaveChangesAsync();
         }
@@ -307,6 +313,26 @@ namespace eShopSolution.Application.Catalog.Products
             };
 
             return productViewModel;
+        }
+
+        public async Task<ProductImageViewModel> GetImageById(int imageId)
+        {
+            var image = await _context.ProductImages.FindAsync(imageId);
+            if (image == null)
+                throw new EShopException($"Cannot find an image with id {imageId}");
+            var viewModel = new ProductImageViewModel()
+            {
+                Caption = image.Caption,
+                DateCreated = image.DateCreated,
+                FileSize = image.FileSize,
+                Id = image.Id,
+                ImagePath = image.ImagePath,
+                IsDefault = image.IsDefault,
+                ProductId = image.ProductId,
+                SortOrder = image.SortOrder
+            };
+
+            return viewModel;
         }
     }
 }
