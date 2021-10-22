@@ -16,7 +16,8 @@ namespace eShopSolution.Data.Configurations
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id).UseIdentityColumn();
-
+            builder.Property(x => x.Amount).HasColumnType("decimal(18,2)");
+            builder.Property(x => x.Fee).HasColumnType("decimal(18,2)");
             builder.HasOne(x => x.AppUser).WithMany(x => x.Transactions).HasForeignKey(x => x.UserId);
 
         }
